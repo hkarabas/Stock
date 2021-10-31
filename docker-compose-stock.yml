@@ -1,0 +1,41 @@
+version: '3.3'
+
+services:
+  stock_mysql_db:
+    image: mysql:8.0.27
+    restart: always
+    container_name: stock_mysql_db
+    environment:
+      MYSQL_DATABASE: 'stockapp'
+      MYSQL_USER: 'payconiq'
+      MYSQL_PASSWORD: 'fb1907'
+      MYSQL_ROOT_PASSWORD: 'fb1907'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - my-db8:/var/lib/mysql
+    networks:
+      - stock-net
+  stockapp:
+    restart: on-failure
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - stock_mysql_db
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./:/workaround
+      - ~/.m2:/root/.m2
+    networks:
+      - stock-net
+    expose:
+      - "8080"
+    command: "mvn clean spring-boot:run"
+volumes:
+  my-db8:
+networks:
+  stock-net:

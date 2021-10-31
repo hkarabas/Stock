@@ -1,0 +1,3 @@
+databaseChangeLog:
+  - include:
+     file: ../../main/resources/db/changelog/db.changelog-master.xml
