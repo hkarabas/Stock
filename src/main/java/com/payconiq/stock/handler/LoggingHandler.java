@@ -16,7 +16,7 @@ import static java.util.Objects.nonNull;
 @Aspect
 public class LoggingHandler {
 
-    @Pointcut("within(com.luan.payconiq.stock.controller.*Controller)")
+    @Pointcut("within(com.payconiq.stock.controller.*Controller)")
     public void controller() {
         // controllers
     }
@@ -26,7 +26,7 @@ public class LoggingHandler {
         // public methods
     }
 
-    @Pointcut("within(@com.luan.payconiq.stock.handler.Loggable *)")
+    @Pointcut("within(@com.payconiq.stock.handler.Loggable *)")
     public void loggable() {
         // Loggable interface
     }
