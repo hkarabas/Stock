@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
 @Loggable
+@Repository
 public interface StockRepository extends JpaRepository<Stock,Long> {
     Optional<Stock> getStocksById(Long id);
 }

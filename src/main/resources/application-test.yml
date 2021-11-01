@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://stock_mysql_db:3306/stockapp
+    url: jdbc:mysql://localhost:3306/stockapp
     username: payconiq
     password: fb1907
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -9,7 +9,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQLDialect
   liquibase:
     change-log: classpath:/db/changelog/db.changelog-master.xml
-    enabled: true
+    enabled: false
   logging:
     level:
       "liquibase": info
