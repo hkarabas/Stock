@@ -10,9 +10,7 @@ import com.payconiq.stock.model.StockDto;
 import com.payconiq.stock.repository.StockRepository;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -68,9 +66,11 @@ public class StockService {
         stockRepository.delete(stock);
     }
 
-    public List<StockDto> getListStocks(PageRequestDto pageRequest) {
-        return stockRepository.findAll(this.getPePageable(pageRequest)).getContent().stream()
-                .map(stockMapper::toStockDto).collect(Collectors.toList());
+    public Page<StockDto> getListStocks(PageRequestDto pageRequest) {
+        Pageable pageable = this.getPePageable(pageRequest);
+        Page<Stock> stockPage  = stockRepository.findAll(pageable);
+        List<StockDto> stockDtoList = stockPage.getContent().stream().map(stockMapper::toStockDto).collect(Collectors.toList());
+        return new PageImpl<>(stockDtoList,pageable,stockPage.getSize());
     }
 
     private Pageable getPePageable(PageRequestDto pageRequestDto) {

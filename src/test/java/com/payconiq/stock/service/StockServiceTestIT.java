@@ -64,7 +64,7 @@ class StockServiceTestIT {
                 .size(size)
                 .page(page)
                 .build();
-        List<StockDto> stockDtoList = stockService.getListStocks(pageRequest);
+        List<StockDto> stockDtoList = stockService.getListStocks(pageRequest).toList();
         Assertions.assertEquals(stockDtoList.size(), size);
     }
 
