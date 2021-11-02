@@ -1,6 +1,6 @@
 package com.payconiq.stock.repository;
 
-import com.payconiq.stock.enrtity.Stock;
+import com.payconiq.stock.entity.Stock;
 import com.payconiq.stock.handler.Loggable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

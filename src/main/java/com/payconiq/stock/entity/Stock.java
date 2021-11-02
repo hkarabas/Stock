@@ -1,4 +1,4 @@
-package com.payconiq.stock.enrtity;
+package com.payconiq.stock.entity;
 
 import lombok.*;
 

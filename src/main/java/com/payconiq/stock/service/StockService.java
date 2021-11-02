@@ -1,7 +1,7 @@
 package com.payconiq.stock.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.payconiq.stock.enrtity.Stock;
+import com.payconiq.stock.entity.Stock;
 import com.payconiq.stock.exception.StockNotFoundException;
 import com.payconiq.stock.handler.Loggable;
 import com.payconiq.stock.mapper.StockMapper;

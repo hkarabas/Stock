@@ -1,6 +1,6 @@
 package com.payconiq.stock.repository;
 
-import com.payconiq.stock.enrtity.Stock;
+import com.payconiq.stock.entity.Stock;
 import com.payconiq.stock.exception.StockNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

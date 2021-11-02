@@ -1,7 +1,7 @@
 package com.payconiq.stock.mapper;
 
 
-import com.payconiq.stock.enrtity.Stock;
+import com.payconiq.stock.entity.Stock;
 import com.payconiq.stock.model.StockDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
