@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Slf4j
@@ -25,9 +26,9 @@ public class StockController {
     public ResponseEntity<StockDto> newStock(StockDto stockDto) {
        return new ResponseEntity<>(stockService.newStock(stockDto),HttpStatus.CREATED);
     }
-    @PatchMapping(path="/{id}")
-    public ResponseEntity<StockDto> updateStock(@PathVariable long id,@RequestBody JsonPatch patch ) {
-        return new ResponseEntity<>(stockService.updateStock(id,patch),HttpStatus.OK);
+    @PatchMapping(path="/{id}/{price}")
+    public ResponseEntity<StockDto> updatePriceStock(@PathVariable Long id,@RequestBody String price) {
+        return new ResponseEntity<>(stockService.updatePriceStock(id,new BigDecimal(price)),HttpStatus.OK);
     }
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> deleteStock(@PathVariable long id) {

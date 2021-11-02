@@ -20,6 +20,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -41,13 +43,14 @@ public class StockService {
 
     @SneakyThrows
     @Transactional
-    public StockDto updateStock(Long Id, JsonPatch jsonPatch) {
+    public StockDto updatePriceStock(Long Id, BigDecimal price) {
         Optional<Stock> stockOptional = stockRepository.getStocksById(Id);
         if (stockOptional.isEmpty()) {
             throw  new StockNotFoundException();
         }
-        Stock stock  = applyPatchToStockDto(jsonPatch,stockOptional.get());
-        stock.setId(Id);
+        Stock stock  =  stockOptional.get();
+        stock.setCurrentPrice(price);
+        stock.setLastUpdate(LocalDateTime.now());
         Stock stockUpdated = stockRepository.save(stock);
         return stockMapper.toStockDto(stockUpdated);
     }
@@ -58,6 +61,7 @@ public class StockService {
         if (stock == null) {
             throw  new StockNotFoundException();
         }
+        stock.setLastUpdate(LocalDateTime.now());
         Stock stockUpdated = stockRepository.save(stock);
         return stockMapper.toStockDto(stockUpdated);
     }
@@ -80,9 +84,5 @@ public class StockService {
         }
     }
 
-    private Stock applyPatchToStockDto(JsonPatch patch, Stock targetStock) throws JsonPatchException, JsonProcessingException {
-        JsonNode patched = patch.apply(objectMapper.convertValue(targetStock, JsonNode.class));
-        return objectMapper.treeToValue(patched, Stock.class);
-    }
 
 }

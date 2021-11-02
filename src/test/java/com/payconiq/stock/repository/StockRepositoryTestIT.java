@@ -16,14 +16,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles(value = "test")
 @Transactional
-class StockRepositoryTest {
+class StockRepositoryTestIT {
 
     @Autowired
     StockRepository stockRepository;
@@ -87,7 +86,6 @@ class StockRepositoryTest {
         Pageable pageable = PageRequest.of(page,size);
         Page<Stock> page1= stockRepository.findAll(pageable);
         Assertions.assertEquals(page1.getContent().size(),size);
-
     }
 
 
