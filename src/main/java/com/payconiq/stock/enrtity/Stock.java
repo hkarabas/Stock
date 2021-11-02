@@ -24,7 +24,7 @@ public class Stock {
     @Column(name = "currentprice")
     private BigDecimal currentPrice;
 
-    @Column(name="lastupdate")
+    @Column(name = "lastupdate")
     private LocalDateTime lastUpdate;
 
 

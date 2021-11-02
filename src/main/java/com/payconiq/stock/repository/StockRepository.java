@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Loggable
 @Repository
-public interface StockRepository extends JpaRepository<Stock,Long> {
+public interface StockRepository extends JpaRepository<Stock, Long> {
     Optional<Stock> getStocksById(Long id);
 }

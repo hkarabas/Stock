@@ -8,6 +8,7 @@ public class StockNotFoundException extends RuntimeException {
     public StockNotFoundException(Long id) {
         super(String.format(STOCK_NOT_FOUND_MESSAGE, id));
     }
+
     public StockNotFoundException() {
         super(STOCK_NOT_FOUND_MESSAGE);
     }

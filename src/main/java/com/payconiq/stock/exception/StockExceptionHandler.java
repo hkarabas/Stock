@@ -30,6 +30,7 @@ public class StockExceptionHandler extends ResponseEntityExceptionHandler {
         log.error("Stock Not Found ", exception);
         return buildResponseEntity(HttpStatus.NOT_FOUND, exception);
     }
+
     @ExceptionHandler({JsonPatchException.class, JsonProcessingException.class})
     public ResponseEntity<Object> convertJsonException(Exception exception) {
         log.error("Json convert exception ", exception);

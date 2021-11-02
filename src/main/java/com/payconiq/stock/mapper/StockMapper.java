@@ -8,13 +8,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class StockMapper {
-    private final static ModelMapper modelmapper  = new ModelMapper();
+    private final static ModelMapper modelmapper = new ModelMapper();
+
     public Stock toStock(StockDto stockDto) {
-        if (stockDto ==  null) {
+        if (stockDto == null) {
             return null;
         }
-        return modelmapper.map(stockDto,Stock.class);
-  }
+        return modelmapper.map(stockDto, Stock.class);
+    }
+
     public StockDto toStockDto(Stock stock) {
         if (stock == null) {
             return null;

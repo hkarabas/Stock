@@ -33,15 +33,16 @@ class StockRepositoryTestIT {
         BigDecimal price = new BigDecimal(300);
         String name = "Coat XL";
 
-        Stock stock  = Stock.builder()
-                    .currentPrice(price)
-                    .name(name)
-                    .lastUpdate(LocalDateTime.now()).build();
+        Stock stock = Stock.builder()
+                .currentPrice(price)
+                .name(name)
+                .lastUpdate(LocalDateTime.now()).build();
 
         Stock stock1 = stockRepository.save(stock);
-        Assertions.assertEquals(stock1.getName(),name);
-        Assertions.assertEquals(stock1.getCurrentPrice(),price);
+        Assertions.assertEquals(stock1.getName(), name);
+        Assertions.assertEquals(stock1.getCurrentPrice(), price);
     }
+
     @Test
     void updateStock() {
         Long id = 1L;
@@ -49,8 +50,8 @@ class StockRepositoryTestIT {
         Optional<Stock> stockOptional = stockRepository.getStocksById(id);
         Stock stock = stockOptional.get();
         stock.setCurrentPrice(price);
-        Stock stock1 =  stockRepository.save(stock);
-        Assertions.assertEquals(stock1.getCurrentPrice(),price);
+        Stock stock1 = stockRepository.save(stock);
+        Assertions.assertEquals(stock1.getCurrentPrice(), price);
     }
 
     @Test
@@ -64,12 +65,12 @@ class StockRepositoryTestIT {
     }
 
     @Test
-    void  throw_stock_found_exception() {
+    void throw_stock_found_exception() {
         Long id = -1L;
         Assertions.assertThrows(StockNotFoundException.class,
-        () -> {
-          stockRepository.getStocksById(id).orElseThrow(() -> new StockNotFoundException(id));
-        } );
+                () -> {
+                    stockRepository.getStocksById(id).orElseThrow(() -> new StockNotFoundException(id));
+                });
     }
 
     @Test
@@ -77,17 +78,17 @@ class StockRepositoryTestIT {
         Long id = 1L;
         Optional<Stock> stockOptional = stockRepository.getStocksById(id);
         Assertions.assertTrue(stockOptional.isPresent());
-        Assertions.assertEquals(stockOptional.get().getId(),id);
+        Assertions.assertEquals(stockOptional.get().getId(), id);
     }
+
     @Test
     void get_list_pegable() {
         int page = 0;
         int size = 5;
-        Pageable pageable = PageRequest.of(page,size);
-        Page<Stock> page1= stockRepository.findAll(pageable);
-        Assertions.assertEquals(page1.getContent().size(),size);
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Stock> page1 = stockRepository.findAll(pageable);
+        Assertions.assertEquals(page1.getContent().size(), size);
     }
-
 
 
 }

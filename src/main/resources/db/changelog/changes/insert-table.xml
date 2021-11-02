@@ -6,82 +6,82 @@
 
     <changeSet id="v1_insert_table" author="hasan.karabas">
         <insert tableName="stock">
-            <column name="name" value="pants s" />
-            <column name="currentprice" value="12.34" />
+            <column name="name" value="pants s"/>
+            <column name="currentprice" value="12.34"/>
         </insert>
 
         <insert tableName="stock">
-            <column name="name" value="pants m" />
-            <column name="currentprice" value="13.34" />
+            <column name="name" value="pants m"/>
+            <column name="currentprice" value="13.34"/>
         </insert>
 
         <insert tableName="stock">
-            <column name="name" value="pants l" />
-            <column name="currentprice" value="14.34" />
+            <column name="name" value="pants l"/>
+            <column name="currentprice" value="14.34"/>
         </insert>
 
         <insert tableName="stock">
-            <column name="name" value="pants xl" />
-            <column name="currentprice" value="14.34" />
+            <column name="name" value="pants xl"/>
+            <column name="currentprice" value="14.34"/>
         </insert>
 
         <insert tableName="stock">
-            <column name="name" value="t-shirt s" />
-            <column name="currentprice" value="5" />
+            <column name="name" value="t-shirt s"/>
+            <column name="currentprice" value="5"/>
         </insert>
         <insert tableName="stock">
-            <column name="name" value="t-shirt m" />
-            <column name="currentprice" value="5" />
-        </insert>
-
-        <insert tableName="stock">
-            <column name="name" value="t-shirt l" />
-            <column name="currentprice" value="5" />
+            <column name="name" value="t-shirt m"/>
+            <column name="currentprice" value="5"/>
         </insert>
 
         <insert tableName="stock">
-            <column name="name" value="t-shirt xl" />
-            <column name="currentprice" value="5" />
+            <column name="name" value="t-shirt l"/>
+            <column name="currentprice" value="5"/>
         </insert>
 
         <insert tableName="stock">
-            <column name="name" value="shirt blouse s" />
-            <column name="currentprice" value="10" />
+            <column name="name" value="t-shirt xl"/>
+            <column name="currentprice" value="5"/>
         </insert>
 
         <insert tableName="stock">
-            <column name="name" value="shirt blouse m" />
-            <column name="currentprice" value="10" />
+            <column name="name" value="shirt blouse s"/>
+            <column name="currentprice" value="10"/>
         </insert>
 
         <insert tableName="stock">
-            <column name="name" value="shirt blouse x" />
-            <column name="currentprice" value="10" />
+            <column name="name" value="shirt blouse m"/>
+            <column name="currentprice" value="10"/>
         </insert>
 
         <insert tableName="stock">
-            <column name="name" value="shirt blouse xl" />
-            <column name="currentprice" value="10" />
+            <column name="name" value="shirt blouse x"/>
+            <column name="currentprice" value="10"/>
         </insert>
 
         <insert tableName="stock">
-            <column name="name" value="jacket s" />
-            <column name="currentprice" value="20" />
+            <column name="name" value="shirt blouse xl"/>
+            <column name="currentprice" value="10"/>
         </insert>
 
         <insert tableName="stock">
-            <column name="name" value="jacket m" />
-            <column name="currentprice" value="20" />
+            <column name="name" value="jacket s"/>
+            <column name="currentprice" value="20"/>
         </insert>
 
         <insert tableName="stock">
-            <column name="name" value="jacket x" />
-            <column name="currentprice" value="22" />
+            <column name="name" value="jacket m"/>
+            <column name="currentprice" value="20"/>
         </insert>
 
         <insert tableName="stock">
-            <column name="name" value="jacket xl" />
-            <column name="currentprice" value="22" />
+            <column name="name" value="jacket x"/>
+            <column name="currentprice" value="22"/>
+        </insert>
+
+        <insert tableName="stock">
+            <column name="name" value="jacket xl"/>
+            <column name="currentprice" value="22"/>
         </insert>
     </changeSet>
 

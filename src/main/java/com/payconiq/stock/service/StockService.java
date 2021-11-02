@@ -1,10 +1,6 @@
 package com.payconiq.stock.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.fge.jsonpatch.JsonPatch;
-import com.github.fge.jsonpatch.JsonPatchException;
 import com.payconiq.stock.enrtity.Stock;
 import com.payconiq.stock.exception.StockNotFoundException;
 import com.payconiq.stock.handler.Loggable;
@@ -36,8 +32,7 @@ public class StockService {
     private ObjectMapper objectMapper;
 
     public StockDto getStock(Long id) {
-        Stock stock = stockRepository.getStocksById(id)
-                .orElseThrow(() -> new StockNotFoundException(id));
+        Stock stock = stockRepository.getStocksById(id).orElseThrow(() -> new StockNotFoundException(id));
         return stockMapper.toStockDto(stock);
     }
 
@@ -46,9 +41,9 @@ public class StockService {
     public StockDto updatePriceStock(Long Id, BigDecimal price) {
         Optional<Stock> stockOptional = stockRepository.getStocksById(Id);
         if (stockOptional.isEmpty()) {
-            throw  new StockNotFoundException();
+            throw new StockNotFoundException();
         }
-        Stock stock  =  stockOptional.get();
+        Stock stock = stockOptional.get();
         stock.setCurrentPrice(price);
         stock.setLastUpdate(LocalDateTime.now());
         Stock stockUpdated = stockRepository.save(stock);
@@ -59,12 +54,13 @@ public class StockService {
     public StockDto newStock(StockDto stockDto) {
         Stock stock = stockMapper.toStock(stockDto);
         if (stock == null) {
-            throw  new StockNotFoundException();
+            throw new StockNotFoundException();
         }
         stock.setLastUpdate(LocalDateTime.now());
         Stock stockUpdated = stockRepository.save(stock);
         return stockMapper.toStockDto(stockUpdated);
     }
+
     @Transactional
     public void deleteStock(Long id) {
         Stock stock = stockRepository.getStocksById(id)
@@ -76,11 +72,12 @@ public class StockService {
         return stockRepository.findAll(this.getPePageable(pageRequest)).getContent().stream()
                 .map(stockMapper::toStockDto).collect(Collectors.toList());
     }
-    private  Pageable getPePageable(PageRequestDto pageRequestDto) {
+
+    private Pageable getPePageable(PageRequestDto pageRequestDto) {
         if (pageRequestDto.getSortColumn() == null || pageRequestDto.getSortColumn().isEmpty()) {
-            return  PageRequest.of(pageRequestDto.getPage(),pageRequestDto.getSize());
+            return PageRequest.of(pageRequestDto.getPage(), pageRequestDto.getSize());
         } else {
-            return PageRequest.of(pageRequestDto.getPage(),pageRequestDto.getSize(),Sort.by(pageRequestDto.getSortColumn()));
+            return PageRequest.of(pageRequestDto.getPage(), pageRequestDto.getSize(), Sort.by(pageRequestDto.getSortColumn()));
         }
     }
 

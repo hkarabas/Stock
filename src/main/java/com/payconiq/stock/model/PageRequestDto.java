@@ -1,15 +1,18 @@
 package com.payconiq.stock.model;
 
 import lombok.*;
-import org.springframework.lang.Nullable;
+
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
 @Builder
 @Getter
 @Setter
-public class PageRequestDto {
-    private  int page;
-    private  int size;
-    private  String sortColumn;
+@NoArgsConstructor
+public class PageRequestDto implements Serializable {
+
+    private int page;
+    private int size;
+    private String sortColumn;
 }

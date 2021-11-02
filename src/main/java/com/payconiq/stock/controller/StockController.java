@@ -1,7 +1,6 @@
 package com.payconiq.stock.controller;
 
 
-import com.github.fge.jsonpatch.JsonPatch;
 import com.payconiq.stock.model.PageRequestDto;
 import com.payconiq.stock.model.StockDto;
 import com.payconiq.stock.service.StockService;
@@ -24,24 +23,28 @@ public class StockController {
 
     @PostMapping
     public ResponseEntity<StockDto> newStock(StockDto stockDto) {
-       return new ResponseEntity<>(stockService.newStock(stockDto),HttpStatus.CREATED);
+        return new ResponseEntity<>(stockService.newStock(stockDto), HttpStatus.CREATED);
     }
-    @PatchMapping(path="/{id}/{price}")
-    public ResponseEntity<StockDto> updatePriceStock(@PathVariable Long id,@RequestBody String price) {
-        return new ResponseEntity<>(stockService.updatePriceStock(id,new BigDecimal(price)),HttpStatus.OK);
+
+    @PatchMapping(path = "/{id}/{price}")
+    public ResponseEntity<StockDto> updatePriceStock(@PathVariable Long id, @PathVariable String price) {
+        return new ResponseEntity<>(stockService.updatePriceStock(id, new BigDecimal(price)), HttpStatus.OK);
     }
+
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> deleteStock(@PathVariable long id) {
         stockService.deleteStock(id);
         return ResponseEntity.noContent().build();
     }
+
     @GetMapping(path = "/{id}")
-    public ResponseEntity<StockDto>  getStock(@PathVariable long id){
-        return new ResponseEntity<>(stockService.getStock(id),HttpStatus.FOUND);
+    public ResponseEntity<StockDto> getStock(@PathVariable long id) {
+        return new ResponseEntity<>(stockService.getStock(id), HttpStatus.OK);
     }
+
     @GetMapping("/stocks")
     public ResponseEntity<List<StockDto>> getListStocks(@RequestBody PageRequestDto pageRequest) {
         List<StockDto> stockDtoList = stockService.getListStocks(pageRequest);
-        return new  ResponseEntity<List<StockDto>>(stockDtoList,HttpStatus.FOUND);
+        return new ResponseEntity<List<StockDto>>(stockDtoList, HttpStatus.OK);
     }
 }

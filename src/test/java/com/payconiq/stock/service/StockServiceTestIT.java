@@ -7,17 +7,12 @@ import com.payconiq.stock.mapper.StockMapper;
 import com.payconiq.stock.model.PageRequestDto;
 import com.payconiq.stock.model.StockDto;
 import com.payconiq.stock.repository.StockRepository;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,26 +44,28 @@ class StockServiceTestIT {
     public void getStock() {
         Long id = 1L;
         StockDto stockDto = stockService.getStock(id);
-        Assertions.assertEquals(id,stockDto.getId());
+        Assertions.assertEquals(id, stockDto.getId());
     }
+
     @Test
-    public void  getStock_StockNotFoundException() {
+    public void getStock_StockNotFoundException() {
         Long id = -1L;
         Assertions.assertThrows(StockNotFoundException.class,
                 () -> {
                     stockService.getStock(id);
-                } );
+                });
     }
+
     @Test
     void get_list_pegable() {
         int page = 0;
         int size = 5;
         PageRequestDto pageRequest = PageRequestDto.builder()
-                                    .size(size)
-                                    .page(page)
-                                    .build();
-        List<StockDto> stockDtoList= stockService.getListStocks(pageRequest);
-        Assertions.assertEquals(stockDtoList.size(),size);
+                .size(size)
+                .page(page)
+                .build();
+        List<StockDto> stockDtoList = stockService.getListStocks(pageRequest);
+        Assertions.assertEquals(stockDtoList.size(), size);
     }
 
     @Test
@@ -77,21 +74,22 @@ class StockServiceTestIT {
         BigDecimal price = new BigDecimal(300);
         String name = "Coat XL";
 
-        StockDto stockDto  = StockDto.builder()
+        StockDto stockDto = StockDto.builder()
                 .currentPrice(price)
                 .name(name)
                 .lastUpdate(LocalDateTime.now()).build();
 
         StockDto stockDto11 = stockService.newStock(stockDto);
-        Assertions.assertEquals(stockDto11.getName(),name);
-        Assertions.assertEquals(stockDto11.getCurrentPrice(),price);
+        Assertions.assertEquals(stockDto11.getName(), name);
+        Assertions.assertEquals(stockDto11.getCurrentPrice(), price);
     }
+
     @Test
     void updateStock() {
         Long id = 1L;
         BigDecimal price = new BigDecimal(200);
-        StockDto stockDto =  stockService.updatePriceStock(id,price);
-        Assertions.assertEquals(stockDto.getCurrentPrice(),price);
+        StockDto stockDto = stockService.updatePriceStock(id, price);
+        Assertions.assertEquals(stockDto.getCurrentPrice(), price);
     }
 
     @Test
@@ -101,8 +99,6 @@ class StockServiceTestIT {
         Optional<Stock> stockOptional2 = stockRepository.getStocksById(id);
         Assertions.assertFalse(stockOptional2.isPresent());
     }
-
-
 
 
 }
