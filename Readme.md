@@ -1,9 +1,14 @@
 This project for payconiq task of hiring 
-Project Structure :
+Project Structure : 
+
 --Spring Boot 2.5.6
+
 --liquibase for Db migration and initial Data load 
+
 --MySqlDb Relation Db
+
 --Docker deployment,build and Run together with  Docker Compose 
+
 --Swagger Api Documention.
 
 Run with Docker:
