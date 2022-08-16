@@ -31,6 +31,7 @@ public class StockService {
 
     public StockDto getStock(Long id) {
         Stock stock = stockRepository.getStocksById(id).orElseThrow(() -> new StockNotFoundException(id));
+        System.out.println(stock);
         return stockMapper.toStockDto(stock);
     }
 
