@@ -63,6 +63,7 @@ public class StockService {
 
     @Transactional
     public void deleteStock(Long id) {
+        System.out.println(id);
         Stock stock = stockRepository.getStocksById(id)
                 .orElseThrow(() -> new StockNotFoundException(id));
         stockRepository.delete(stock);
