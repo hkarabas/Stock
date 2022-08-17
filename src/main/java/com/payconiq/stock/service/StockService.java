@@ -57,7 +57,6 @@ public class StockService {
         }
         stock.setLastUpdate(LocalDateTime.now());
         Stock stockUpdated = stockRepository.save(stock);
-        System.out.println(stockUpdated);
         return stockMapper.toStockDto(stockUpdated);
     }
 
